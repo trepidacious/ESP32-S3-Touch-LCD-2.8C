@@ -11,24 +11,24 @@ use crate::Step;
 /// Commands from table 1, these should always be supported
 #[repr(u8)]
 enum Command1 {
-    SwReset = 0x01,    // Software Reset
-    SlpOut = 0x11,     // Sleep Out
-    PtlOn = 0x12,      // Partial Display Mode On
-    NorOn = 0x13,      // Normal Display Mode On
-    InvOff = 0x20,     // Display Inversion Off
-    InvOn = 0x21,      // Display Inversion On
-    AllPOff = 0x22,    // All Pixels Off
-    AllPon = 0x23,     // All Pixels On
-    GamSet = 0x26,     // Gamma Set
-    DispOff = 0x28,    // Display Off
-    DispOn = 0x29,     // Display On
-    TeOff = 0x34,      // Tearing Effect Line Off (kinda vsync)
-    TeOn = 0x35,       // Tearing Effect Line On (kinda vsync)
-    MadCtl = 0x36,     // Display data access control
-    IdmOff = 0x38,     // Idle Mode Off
-    IdmOn = 0x39,      // Idle Mode On
-    ColMod = 0x3A,     // Interface Pixel Format
-    Gsl = 0x45,        // Get Scan Line
+    SwReset = 0x01, // Software Reset
+    SlpOut = 0x11,  // Sleep Out
+    // PtlOn = 0x12,      // Partial Display Mode On
+    // NorOn = 0x13,      // Normal Display Mode On
+    // InvOff = 0x20,     // Display Inversion Off
+    InvOn = 0x21, // Display Inversion On
+    // AllPOff = 0x22,    // All Pixels Off
+    // AllPon = 0x23,     // All Pixels On
+    // GamSet = 0x26,     // Gamma Set
+    // DispOff = 0x28,    // Display Off
+    DispOn = 0x29, // Display On
+    // TeOff = 0x34,      // Tearing Effect Line Off (kinda vsync)
+    // TeOn = 0x35,       // Tearing Effect Line On (kinda vsync)
+    MadCtl = 0x36, // Display data access control
+    // IdmOff = 0x38,     // Idle Mode Off
+    // IdmOn = 0x39,      // Idle Mode On
+    ColMod = 0x3A, // Interface Pixel Format
+    // Gsl = 0x45,        // Get Scan Line
     Cnd2BkxSel = 0xFF, // Select which command2 banks are enabled
 }
 
@@ -37,22 +37,22 @@ enum Command1 {
 enum Command2Bank0 {
     PvGamCtrl = 0xB0, // Positive Voltage Gamma Control
     NvGamCtrl = 0xB1, // Negative Voltage Gamma Control
-    DgmEn = 0xB8,     // Digital Gamma Enable
-    DgmLutR = 0xB9,   // Digital Gamma LUT for Red
-    DgmLutB = 0xBA,   // Digital Gamma Lut for Blue
-    LneSet = 0xC0,    // Display Line Setting
-    PorCtrl = 0xC1,   // Porch Control
-    InvSet = 0xC2,    // Inversion Selection & Frame Rate Control
-    RgbCtrl = 0xC3,   // RGB Control
-    ParCtrl = 0xC5,   // Partial Mode Control
-    SDir = 0xC7,      // X-direction Control
-    PdoSet = 0xC8,    // Pseudo-Dot Inversion Diving Settign
-    ColCtrl = 0xCD,   // Colour Control
-    SreCtrl = 0xE0,   // Sunlight Readable Enhancement
-    NrCtrl = 0xE1,    // Noise Reduce Control
-    SeCtrl = 0xE2,    // Sharpness Control
-    CcCtrl = 0xE3,    // Color Calibration Control
-    SkCtrl = 0xE4,    // Skin Tone Preservation Control
+    // DgmEn = 0xB8,     // Digital Gamma Enable
+    // DgmLutR = 0xB9,   // Digital Gamma LUT for Red
+    // DgmLutB = 0xBA,   // Digital Gamma Lut for Blue
+    LneSet = 0xC0,  // Display Line Setting
+    PorCtrl = 0xC1, // Porch Control
+    InvSet = 0xC2,  // Inversion Selection & Frame Rate Control
+    RgbCtrl = 0xC3, // RGB Control
+    // ParCtrl = 0xC5,   // Partial Mode Control
+    SDir = 0xC7, // X-direction Control
+    // PdoSet = 0xC8,    // Pseudo-Dot Inversion Diving Settign
+    ColCtrl = 0xCD, // Colour Control
+                    // SreCtrl = 0xE0,   // Sunlight Readable Enhancement
+                    // NrCtrl = 0xE1,    // Noise Reduce Control
+                    // SeCtrl = 0xE2,    // Sharpness Control
+                    // CcCtrl = 0xE3,    // Color Calibration Control
+                    // SkCtrl = 0xE4,    // Skin Tone Preservation Control
 }
 
 // Commands from table 2, bank 1 - this bank must be enabled before using
@@ -63,22 +63,22 @@ enum Command2Bank1 {
     VghSs = 0xB2,   // VGH voltage
     TestCmd = 0xB3, // TEST command
     VglS = 0xB5,    // VGL voltage
-    VrhDv = 0xB6,   // VRH_DV voltage
+    // VrhDv = 0xB6,   // VRH_DV voltage
     PwCtrl1 = 0xB7, // Power Control 1
     PwCtrl2 = 0xB8, // Power Control 2
-    PClkS1 = 0xBA,  // Power pumping clock selection 1
-    PClkS2 = 0xBC,  // Power pumping clock selection 2
-    Pdr1 = 0xC1,    // Source pre_drive timing set 1
-    Pdr2 = 0xC2,    // Source pre_drive timing set 2
+    // PClkS1 = 0xBA,  // Power pumping clock selection 1
+    // PClkS2 = 0xBC,  // Power pumping clock selection 2
+    Pdr1 = 0xC1, // Source pre_drive timing set 1
+    Pdr2 = 0xC2, // Source pre_drive timing set 2
 }
 
 // Commands from table 2, bank 3 - this bank must be enabled before using
-#[repr(u8)]
-enum Command2Bank3 {
-    NvmEn = 0xC8,   // NVM enable
-    NvmSet = 0xCA,  // NVM manual control
-    PromAct = 0xCC, // NVM program active
-}
+// #[repr(u8)]
+// enum Command2Bank3 {
+//     NvmEn = 0xC8,   // NVM enable
+//     NvmSet = 0xCA,  // NVM manual control
+//     PromAct = 0xCC, // NVM program active
+// }
 
 /// Step to disable all command2 banks
 pub const COMMAND2_BANKS_DISABLE: Step = Step {
