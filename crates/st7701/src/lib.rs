@@ -69,6 +69,9 @@ use embedded_hal::digital::OutputPin;
 #[cfg(feature = "waveshare-2-8c")]
 pub mod sequences;
 
+#[cfg(feature = "presto")]
+pub mod presto;
+
 /// One entry in an ST7701 init sequence: a controller command byte,
 /// zero or more parameter bytes, and an optional post-step settling
 /// delay in milliseconds (0 = no delay).
@@ -133,7 +136,13 @@ where
     /// [`Self::reset`] / [`Self::run`] / [`Self::write_command`]
     /// primitives) to actually do anything.
     pub fn new(sck: SCK, sda: SDA, cs: CS, rst: RST, delay: D) -> Self {
-        Self { sck, sda, cs, rst, delay }
+        Self {
+            sck,
+            sda,
+            cs,
+            rst,
+            delay,
+        }
     }
 
     /// Hardware-reset the controller, then clock out `sequence`.

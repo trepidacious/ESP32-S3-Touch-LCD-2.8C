@@ -14,12 +14,16 @@ repository.workspace   = true
 embedded-hal = { workspace = true }
 
 [features]
-default = ["waveshare-2-8c"]
+default = ["waveshare-2-8c", "presto"]
+
 ## Bundle the canonical init sequence for the Waveshare ESP32-S3-Touch-LCD-2.8C.
 ## Enabled by default. Disable if you only need the bare init machinery and
 ## supply your own panel's sequence — keeps a couple of hundred bytes of
 ## .rodata out of binaries that don't need it.
 waveshare-2-8c = []
+
+## Bundle the canonical init sequence for the Pimoroni Presto.
+presto = []
 
 [package.metadata.docs.rs]
 all-features = true
